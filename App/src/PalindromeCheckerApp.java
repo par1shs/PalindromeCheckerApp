@@ -1,39 +1,35 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
-class QueueStackPalindrome {
+class PalindromeDeque {
     public static void main(String[] args) {
-        String word = "madam";
+        String word = "racecar";
+        Deque<Character> deque = new ArrayDeque<>();
 
-        Queue<Character> queue = new LinkedList<>(); // FIFO
-        Stack<Character> stack = new Stack<>();       // LIFO
-
-        // 1. Enqueue & Push characters
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            queue.add(c);
-            stack.push(c);
+        // 1. Insert characters into deque
+        for (char c : word.toCharArray()) {
+            deque.addLast(c); // Piche se add kiya
         }
 
         boolean isPalindrome = true;
 
-        // 2. Logical Comparison: Compare dequeue vs pop
-        while (!queue.isEmpty()) {
-            char fromQueue = queue.remove();
-            char fromStack = stack.pop();
+        // 2. Remove first & last and Compare
+        // Jab tak deque mein 1 se zyada character hai
+        while (deque.size() > 1) {
+            char first = deque.removeFirst(); // Front se nikaala
+            char last = deque.removeLast();   // Rear se nikaala
 
-            if (fromQueue != fromStack) {
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // 3. Print Result
+        // 3. Print result
         if (isPalindrome) {
-            System.out.println("It's a Palindrome! 🚀 (FIFO matches LIFO)");
+            System.out.println(word + " is a Palindrome! 🔄");
         } else {
-            System.out.println("Not a Palindrome. ❌");
+            System.out.println(word + " is not a Palindrome. ❌");
         }
     }
 }
