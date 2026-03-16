@@ -1,29 +1,29 @@
-class PalindromeTwoPointer {
+import java.util.Stack;
+
+class PalindromeStack {
     public static void main(String[] args) {
         String word = "madam";
+        Stack<Character> stack = new Stack<>();
 
-        // 1. Convert string to char[]
-        char[] charArray = word.toCharArray();
-
-        int left = 0;                  // Start pointer
-        int right = charArray.length - 1; // End pointer
-        boolean isPalindrome = true;
-
-        // 2. Two-pointer approach
-        while (left < right) {
-            // 3. Compare start & end characters
-            if (charArray[left] != charArray[right]) {
-                isPalindrome = false;
-                break; // Mismatch milte hi exit!
-            }
-            left++;  // Move forward
-            right--; // Move backward
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
         }
 
+        boolean isPalindrome = true;
+
+        for (int i = 0; i < word.length(); i++) {
+
+            if (word.charAt(i) != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+
         if (isPalindrome) {
-            System.out.println("It's a Palindrome! ✅");
+            System.out.println(word + " is a Palindrome! ✅");
         } else {
-            System.out.println("Not a Palindrome. ❌");
+            System.out.println(word + " is not a Palindrome. ❌");
         }
     }
 }
