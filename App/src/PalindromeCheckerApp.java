@@ -1,19 +1,29 @@
-class PalindromeCheckerApp {
+class PalindromeTwoPointer {
     public static void main(String[] args) {
         String word = "madam";
-        String reversed = "";
 
+        // 1. Convert string to char[]
+        char[] charArray = word.toCharArray();
 
-        for (int i = word.length() - 1; i >= 0; i--) {
+        int left = 0;                  // Start pointer
+        int right = charArray.length - 1; // End pointer
+        boolean isPalindrome = true;
 
-            reversed += word.charAt(i);
+        // 2. Two-pointer approach
+        while (left < right) {
+            // 3. Compare start & end characters
+            if (charArray[left] != charArray[right]) {
+                isPalindrome = false;
+                break; // Mismatch milte hi exit!
+            }
+            left++;  // Move forward
+            right--; // Move backward
         }
 
-
-        if (word.equals(reversed)) {
-            System.out.println("It's a Palindrome!");
+        if (isPalindrome) {
+            System.out.println("It's a Palindrome! ✅");
         } else {
-            System.out.println("Not a Palindrome.");
+            System.out.println("Not a Palindrome. ❌");
         }
     }
 }
