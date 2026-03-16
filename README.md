@@ -1,3 +1,3 @@
 # PalindromeCheckerApp
 
-Step wale karwa rahe bc
+Step ki mkc
